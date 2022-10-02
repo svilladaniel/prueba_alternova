@@ -75,8 +75,17 @@ WSGI_APPLICATION = 'prueba_alternova.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE' : 'django.db.backends.postgresql',
+        'NAME' : 'postgres',
+        'HOST' : 'db.usyekndizppjqxaoekkv.supabase.co',
+        'PASSWORD': 'Facilit0$123',
+        # 'HOST' : os.environ.get('SUPABASE_HOST'),
+        # 'PASSWORD': os.environ.get('SUPABASE_PW'),
+        'PORT': 5432,
+        'USER': 'postgres',
+        'CERT' : 'config.prod-ca-2021.crt', 
     }
 }
 
