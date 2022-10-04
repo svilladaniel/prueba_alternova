@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'jokes'
 ]
 
 MIDDLEWARE = [
@@ -85,8 +87,6 @@ DATABASES = {
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE' : 'django.db.backends.postgresql',
         'NAME' : os.environ.get('SUPABASE_DATABASE_NAME'),
-        # 'HOST' : 'db.usyekndizppjqxaoekkv.supabase.co',
-        # 'PASSWORD': 'Facilit0$123',
         'HOST' : os.environ.get('SUPABASE_HOST'),
         'PASSWORD': os.environ.get('SUPABASE_PASSWORD'),
         'PORT': 5432,
@@ -112,6 +112,16 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# Django rest framework settings
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 
 # Internationalization
