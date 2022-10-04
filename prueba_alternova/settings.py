@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+# env_path = Path('.')/'.env'
+# load_dotenv(dotenv_path=env_path)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -78,13 +84,13 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE' : 'django.db.backends.postgresql',
-        'NAME' : 'postgres',
-        'HOST' : 'db.usyekndizppjqxaoekkv.supabase.co',
-        'PASSWORD': 'Facilit0$123',
-        # 'HOST' : os.environ.get('SUPABASE_HOST'),
-        # 'PASSWORD': os.environ.get('SUPABASE_PW'),
+        'NAME' : os.environ.get('SUPABASE_DATABASE_NAME'),
+        # 'HOST' : 'db.usyekndizppjqxaoekkv.supabase.co',
+        # 'PASSWORD': 'Facilit0$123',
+        'HOST' : os.environ.get('SUPABASE_HOST'),
+        'PASSWORD': os.environ.get('SUPABASE_PASSWORD'),
         'PORT': 5432,
-        'USER': 'postgres'
+        'USER': os.environ.get('SUPABASE_USER')
     }
 }
 
