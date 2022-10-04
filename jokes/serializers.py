@@ -2,22 +2,13 @@
 from rest_framework import serializers
 
 # Models
-from jokes.models import ChuckNorrysJokes, OwnJokes
+from jokes.models import MyJokes
 
 
-class ChuckNorrysJokesModelSerializer(serializers.ModelSerializer):
+class MyJokesModelSerializer(serializers.ModelSerializer):
     ''''''
 
     class Meta:
-        model = ChuckNorrysJokes
-        # exclude = []
-        # read_only_fields = []
-
-
-class OwnJokesModelSerializer(serializers.ModelSerializer):
-    ''''''
-
-    class Meta:
-        model = OwnJokes
+        model = MyJokes
         # exclude = []
         # read_only_fields = []
