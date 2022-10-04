@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+# env_path = Path('.')/'.env'
+# load_dotenv(dotenv_path=env_path)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-5$e^5^4h#%sovjbw7)7rt)@(oyfo-kc=0jm2jdn5@)ssp+-1-i'
+SECRET_KEY = os.environ.get('MY_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -37,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'jokes'
 ]
 
 MIDDLEWARE = [
@@ -78,13 +86,11 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE' : 'django.db.backends.postgresql',
-        'NAME' : 'postgres',
-        'HOST' : 'db.usyekndizppjqxaoekkv.supabase.co',
-        'PASSWORD': 'Facilit0$123',
-        # 'HOST' : os.environ.get('SUPABASE_HOST'),
-        # 'PASSWORD': os.environ.get('SUPABASE_PW'),
+        'NAME' : os.environ.get('SUPABASE_DATABASE_NAME'),
+        'HOST' : os.environ.get('SUPABASE_HOST'),
+        'PASSWORD': os.environ.get('SUPABASE_PASSWORD'),
         'PORT': 5432,
-        'USER': 'postgres'
+        'USER': os.environ.get('SUPABASE_USER')
     }
 }
 
@@ -106,6 +112,16 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# Django rest framework settings
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 
 # Internationalization
