@@ -14,6 +14,9 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
+# heroku
+import django_heroku
+
 load_dotenv()
 # env_path = Path('.')/'.env'
 # load_dotenv(dotenv_path=env_path)
@@ -31,7 +34,7 @@ SECRET_KEY = os.environ.get('MY_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['test-django-heroku.herokuapp.com']
 
 
 # Application definition
@@ -145,3 +148,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Activate Django-Heroku. 
+ django_heroku.settings(locals())
